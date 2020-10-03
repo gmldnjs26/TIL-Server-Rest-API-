@@ -1,4 +1,4 @@
-package com.example.gwak;
+package com.example.gwak.exception;
 
 import lombok.Data;
 
