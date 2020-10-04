@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService,UserDetailsService{
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	JwtTokenProvider jwtTokenProvider;
+	private JwtTokenProvider jwtTokenProvider;
 	
 	
 	/* JWT Token 매번 인증시 사용하는 친구 */

@@ -3,11 +3,11 @@ package com.example.gwak.config.security;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,6 +32,7 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
 
     private long tokenValidMilisecond = 1000L * 60 * 60; // 1시간만 토큰 유효
 
+    @Autowired
     private MemberServiceImpl memberServiceImpl;
 
     @PostConstruct
