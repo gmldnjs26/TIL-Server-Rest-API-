@@ -1,6 +1,6 @@
 # TIL
 
-Today I Learned 오늘 내가 배운것을 기록 위한 APP 
+Today I Learned 오늘 내가 배운것을 기록 위한 APP(Server)
 
 
 ## Tools
@@ -9,4 +9,5 @@ Today I Learned 오늘 내가 배운것을 기록 위한 APP
 * Maven
 * SpringSecurity(JwtToken)
 * MyBatis
+* H2
 
