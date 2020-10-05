@@ -6,7 +6,14 @@
     	VALUES(#{id},#{password},#{nickname})
     </insert>
     
-    <select id="selectOne" resultType="com.example.gwak.dto.Member" parameterType="String">
-    	SELECT * FROM MEMBER WHERE ID = #{id}
+    <select id="selectOne" resultType="com.example.gwak.dto.Member" parameterType="com.example.gwak.dto.Member">
+    	SELECT 
+    		* 
+    	FROM 
+    		MEMBER 
+    	WHERE 
+    		ID = #{id}
+    		AND PASSWORD = #{password}
+    	  
     </select>
 </mapper>

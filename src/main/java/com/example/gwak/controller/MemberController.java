@@ -28,8 +28,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("/api/login")
-	public ResponseEntity<AuthDto> login(@RequestBody Member memberVO) throws Exception {
-		return ResponseEntity.ok(memberService.login(memberVO));
+	public ResponseEntity<AuthDto> login(@RequestBody Member member) throws Exception {
+		return ResponseEntity.ok(memberService.login(member));
 	}
 	
 	

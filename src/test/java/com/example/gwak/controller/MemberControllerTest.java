@@ -18,32 +18,44 @@ import com.example.gwak.dto.RequestMember;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest // 
+// @WebMvcTest(slicing Test에선 SecurityConfiguration 설정에선 토큰생성기가 참조가 안됨)
 public class MemberControllerTest {
 	@Autowired
 	private MemberController memberController; // To create Response and Request
-	
+
 	private MockMvc mockMvc;
-	
+
 	@Before
 	public void setUp() throws Exception {
-	     mockMvc = MockMvcBuilders.standaloneSetup(memberController).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(memberController).build();
 	}
 
 
-	
+
 	@Autowired
 	ObjectMapper objectMapper;
-	
+
 	@Test
 	public void createMembmerTest() throws Exception {
-		RequestMember member = new RequestMember("Gwakheewon2","1234","GodHeewon");
-		
+
+		RequestMember member = new RequestMember("Gwakheewon4","1234","GodHeewon");
+
 		mockMvc.perform(post("/api/join")
-						.contentType(MediaType.APPLICATION_JSON_UTF8)
-						.content(objectMapper.writeValueAsString(member)))
-				.andDo(print())
-				.andExpect(status().is2xxSuccessful());
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(objectMapper.writeValueAsString(member)))
+		.andDo(print())
+		.andExpect(status().is2xxSuccessful());
 	}
 
+	@Test
+	public void loginTest() throws Exception {
+		RequestMember member = new RequestMember("Gwakheewon3","1234","GodHeewon");
+
+		mockMvc.perform(post("/api/login")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(objectMapper.writeValueAsString(member)))
+		.andDo(print())
+		.andExpect(status().is2xxSuccessful());
+	}
 }

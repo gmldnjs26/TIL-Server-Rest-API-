@@ -16,41 +16,37 @@ import com.example.gwak.mapper.MemberMapper;
 public class MemberServiceImpl implements MemberService,UserDetailsService{
 	@Autowired
 	private MemberMapper memberMapper;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
-	
-	
+
+
 	/* JWT Token 매번 인증시 사용하는 친구 */
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(Member memberVO) throws UsernameNotFoundException {
 		// 로거 
-		Member member = memberMapper.selectOne(username);
+		Member member = memberMapper.selectOne(memberVO);
 		if(member == null) {
-			throw new UsernameNotFoundException(username);
+			throw new UsernameNotFoundException(memberVO.getUsername());
 		}
 		return member;
 	}
-	
+
 	@Override
 	public AuthDto login(Member memberVO) throws Exception {
 		Member member = memberMapper.selectOne(memberVO.getUsername());
 		if(member == null) {
 			throw new UsernameNotFoundException(memberVO.getUsername());
 		} else {
-			if(member.getPassword().equals(passwordEncoder.encode(memberVO.getPassword()))) {
-				String token = jwtTokenProvider.createToken(member.getUsername(), member.getAuthorities());
-				return AuthDto.builder()
-						.token(token)
-						.member(member)
-						.build();
-			} else {
-				throw new Exception("Password is Wrong");
-			}
-		}
+			String token = jwtTokenProvider.createToken(member.getUsername(), member.getAuthorities());
+			return AuthDto.builder()
+					.token(token)
+					.member(member)
+					.build();
+		} 
 	}
 
 	@Override
