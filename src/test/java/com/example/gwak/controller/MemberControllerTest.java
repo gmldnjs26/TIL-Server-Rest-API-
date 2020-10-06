@@ -31,26 +31,24 @@ public class MemberControllerTest {
 		mockMvc = MockMvcBuilders.standaloneSetup(memberController).build();
 	}
 
-
-
 	@Autowired
 	ObjectMapper objectMapper;
 
-	@Test
-	public void createMembmerTest() throws Exception {
-
-		RequestMember member = new RequestMember("Gwakheewon4","1234","GodHeewon");
-
-		mockMvc.perform(post("/api/join")
-				.contentType(MediaType.APPLICATION_JSON_UTF8)
-				.content(objectMapper.writeValueAsString(member)))
-		.andDo(print())
-		.andExpect(status().is2xxSuccessful());
-	}
+//	@Test
+//	public void createMembmerTest() throws Exception {
+//
+//		RequestMember member = new RequestMember("Gwakheewon5","1234","GodHeewon");
+//
+//		mockMvc.perform(post("/api/join")
+//				.contentType(MediaType.APPLICATION_JSON_UTF8)
+//				.content(objectMapper.writeValueAsString(member)))
+//		.andDo(print())
+//		.andExpect(status().is2xxSuccessful());
+//	}
 
 	@Test
 	public void loginTest() throws Exception {
-		RequestMember member = new RequestMember("Gwakheewon3","1234","GodHeewon");
+		RequestMember member = new RequestMember("Gwakheewon5","1234","GodHeewon");
 
 		mockMvc.perform(post("/api/login")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)

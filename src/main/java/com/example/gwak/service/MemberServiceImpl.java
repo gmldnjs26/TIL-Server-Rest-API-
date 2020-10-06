@@ -13,7 +13,7 @@ import com.example.gwak.dto.Member;
 import com.example.gwak.mapper.MemberMapper;
 
 @Service
-public class MemberServiceImpl implements MemberService,UserDetailsService{
+public class MemberServiceImpl implements MemberService, UserDetailsService{
 	@Autowired
 	private MemberMapper memberMapper;
 
@@ -26,11 +26,11 @@ public class MemberServiceImpl implements MemberService,UserDetailsService{
 
 	/* JWT Token 매번 인증시 사용하는 친구 */
 	@Override
-	public UserDetails loadUserByUsername(Member memberVO) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// 로거 
-		Member member = memberMapper.selectOne(memberVO);
+		Member member = memberMapper.selectOne(username);
 		if(member == null) {
-			throw new UsernameNotFoundException(memberVO.getUsername());
+			throw new UsernameNotFoundException(username);
 		}
 		return member;
 	}
@@ -40,7 +40,12 @@ public class MemberServiceImpl implements MemberService,UserDetailsService{
 		Member member = memberMapper.selectOne(memberVO.getUsername());
 		if(member == null) {
 			throw new UsernameNotFoundException(memberVO.getUsername());
-		} else {
+		} else if(!passwordEncoder.matches(memberVO.getPassword(), member.getPassword())) {
+			System.out.println("memberVO.getPassword() " + passwordEncoder.encode(memberVO.getPassword()));
+			System.out.println("member.getPassword() " + member.getPassword());
+			throw new IllegalArgumentException("Password is Wrong");
+		}
+		else {
 			String token = jwtTokenProvider.createToken(member.getUsername(), member.getAuthorities());
 			return AuthDto.builder()
 					.token(token)
