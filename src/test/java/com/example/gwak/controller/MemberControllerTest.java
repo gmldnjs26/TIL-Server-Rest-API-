@@ -64,14 +64,18 @@ public class MemberControllerTest {
 		Assert.assertTrue(passwordEncoder.matches(password2, en_pwd2));
 	}
 
-//	@Test
-//	public void loginTest() throws Exception {
-//		RequestMember member = new RequestMember("Gwakheewon5","1234","GodHeewon");
-//
-//		mockMvc.perform(post("/api/login")
-//				.contentType(MediaType.APPLICATION_JSON_UTF8)
-//				.content(objectMapper.writeValueAsString(member)))
-//		.andDo(print())
-//		.andExpect(status().is2xxSuccessful());
-//	}
+	@Test
+	public void loginTest() throws Exception {
+		RequestMember member = new RequestMember("Gwakheewon5","1234","GodHeewon");
+
+		mockMvc.perform(post("/api/login")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(objectMapper.writeValueAsString(member)))
+		.andDo(print())
+		.andExpect(status().is2xxSuccessful());
+	}
+	@Test
+	public void validateTokenTest() throws Exception {
+		
+	}
 }

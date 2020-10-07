@@ -32,5 +32,11 @@ public class MemberController {
 		return ResponseEntity.ok(memberService.login(member));
 	}
 	
+	@PostMapping("/api/test")
+	public String auth_test() {
+		System.out.println("인증성공");
+		return "test";
+	}
+	
 	
 }
