@@ -4,12 +4,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -23,6 +25,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MemberControllerTest {
 	@Autowired
 	private MemberController memberController; // To create Response and Request
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	private MockMvc mockMvc;
 
@@ -45,15 +50,28 @@ public class MemberControllerTest {
 //		.andDo(print())
 //		.andExpect(status().is2xxSuccessful());
 //	}
-
+	
 	@Test
-	public void loginTest() throws Exception {
-		RequestMember member = new RequestMember("Gwakheewon5","1234","GodHeewon");
-
-		mockMvc.perform(post("/api/login")
-				.contentType(MediaType.APPLICATION_JSON_UTF8)
-				.content(objectMapper.writeValueAsString(member)))
-		.andDo(print())
-		.andExpect(status().is2xxSuccessful());
+	public void passwordEncoderTest() throws Exception {
+		String password1 = "1234";
+		String password2 = "5678";
+		
+		String en_pwd1 = passwordEncoder.encode(password1);
+		String en_pwd2 = passwordEncoder.encode(password2);
+		
+		//Assert.assertEquals(passwordEncoder.encode(password1), passwordEncoder.encode(password2));
+		Assert.assertTrue(passwordEncoder.matches(password1, en_pwd1));
+		Assert.assertTrue(passwordEncoder.matches(password2, en_pwd2));
 	}
+
+//	@Test
+//	public void loginTest() throws Exception {
+//		RequestMember member = new RequestMember("Gwakheewon5","1234","GodHeewon");
+//
+//		mockMvc.perform(post("/api/login")
+//				.contentType(MediaType.APPLICATION_JSON_UTF8)
+//				.content(objectMapper.writeValueAsString(member)))
+//		.andDo(print())
+//		.andExpect(status().is2xxSuccessful());
+//	}
 }
