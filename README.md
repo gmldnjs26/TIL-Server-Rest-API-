@@ -9,5 +9,5 @@ Today I Learned 오늘 내가 배운것을 기록 위한 APP(Server)
 * Maven
 * SpringSecurity(JwtToken)
 * MyBatis
-* H2
+* H2 Database
 
