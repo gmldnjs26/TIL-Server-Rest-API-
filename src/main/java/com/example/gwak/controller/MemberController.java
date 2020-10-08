@@ -12,6 +12,7 @@ import com.example.gwak.service.MemberService;
 
 @RestController
 public class MemberController {
+	
 	@Autowired
 	private MemberService memberService;
 	

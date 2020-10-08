@@ -1,4 +1,4 @@
-package com.example.gwak.dto;
+package com.example.gwak.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
