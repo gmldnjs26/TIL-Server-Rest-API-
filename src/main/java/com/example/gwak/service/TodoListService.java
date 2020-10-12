@@ -1,5 +1,13 @@
 package com.example.gwak.service;
 
-public class TodoListService {
+import java.util.List;
 
+import com.example.gwak.dto.TodoList;
+
+public interface TodoListService {
+	List<TodoList>selectTil(String id);
+	
+	void insertTil(TodoList til);
+	
+	void updateTil(TodoList til);
 }

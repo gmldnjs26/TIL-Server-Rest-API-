@@ -8,5 +8,9 @@ import com.example.gwak.dto.TodoList;
 
 @Mapper
 public interface TodoListMapper {
-	List<TodoList>getTIL(String id);	
+	List<TodoList>selectTil(String id); // Get TodoList For ID
+	
+	void insertTil(TodoList til); // Insert TodoList For ID
+	
+	void updateTil(TodoList til); // Update TodoList For ID, Title
 }
