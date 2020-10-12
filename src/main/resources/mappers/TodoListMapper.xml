@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.gwak.mapper.TodoListMapper">
-	<insert id="getTilList" parameterType="String">
-	
+	<select id="selectTil" parameterType="String" resultType="com.example.gwak.dto.TodoList">
+		SELECT * 
+		FROM TODOLIST 
+		WHERE ID = #{id}
+    </select>
+    
+    <insert id="insertTil" parameterType="com.example.gwak.dto.TodoList">
+    	INSERT INTO TODOLIST 
+    	VALUES(#{id},#{title},#{contents})
     </insert>
     
-    <select id="selectOne" resultType="com.example.gwak.dto.TodoListMapper" parameterType="String">
-		
-    </select>
+    <update id="updateTil" parameterType="com.example.gwak.dto.TodoList">
+    	UPDATE 
+    		TODOLIST
+    	SET 
+    		CONTENTS = #{contents}
+    		,COMPLETED = #{completed}
+    	WHERE 
+    		ID = #{id}
+    		AND TITLE = #{title}
+    </update>
+    
 </mapper>
