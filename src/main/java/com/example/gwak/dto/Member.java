@@ -21,7 +21,9 @@ import lombok.Setter;
 public class Member implements UserDetails{
 	
 	private String id;
+	
 	private String password;
+	
 	private String nickname;
 	
 	@Override
