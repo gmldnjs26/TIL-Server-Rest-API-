@@ -8,8 +8,10 @@
     </select>
     
     <insert id="insertTil" parameterType="com.example.gwak.dto.TodoList">
-    	INSERT INTO TODOLIST 
-    	VALUES(#{id},#{title},#{contents})
+    	INSERT INTO TODOLIST
+    		(ID,TITLE,CONTENTS,CREATEDAT) 
+    	VALUES
+    		(#{id},#{title},#{contents},#{createdat})
     </insert>
     
     <update id="updateTil" parameterType="com.example.gwak.dto.TodoList">

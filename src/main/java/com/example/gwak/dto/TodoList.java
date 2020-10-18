@@ -18,7 +18,7 @@ public class TodoList {
 	
 	private String contents;
 	
-	private String createAt; // 만든 날짜
+	private String createdat; // 만든 날짜
 	
 	private Integer completed; // 0:Not Completed 1:Completed
 }

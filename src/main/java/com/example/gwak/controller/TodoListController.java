@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.gwak.dto.TodoList;
 import com.example.gwak.service.TodoListService;
@@ -24,9 +25,10 @@ public class TodoListController {
 	}
 	
 	@PostMapping("/api/insertTil")
-	public ResponseEntity<String> insertTil(TodoList til) {
+	public ResponseEntity<String> insertTil(@RequestBody TodoList todoList) {
+		System.out.println("InsertTil" + todoList.getId());
 		try {
-			todoListService.insertTil(til);
+			todoListService.insertTil(todoList);
 			return ResponseEntity.ok("Success");
 		} catch(Exception e) {
 			return ResponseEntity.badRequest().build();
