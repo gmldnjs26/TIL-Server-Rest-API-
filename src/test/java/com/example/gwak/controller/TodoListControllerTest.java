@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
@@ -61,18 +62,20 @@ public class TodoListControllerTest {
 	}
 
 	@Test
-	public void selectTodoList() throws Exception{
-		MvcResult todoList =  
+	public void selectTodoList() throws Exception {
+		String id = "Gwakheewon5";
+		
+		MvcResult result =  
 				mockMvc.perform(get("/api/selectTil")
-						.content(objectMapper.writeValueAsString("Gwakheewon5")))
+						.content(id))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andReturn();
-		String content = todoList.getResponse().getContentAsString();
+		String content = result.getResponse().getContentAsString();
 
-		TodoList re_til = objectMapper.readValue(content, TodoList.class);
+		List<TodoList> todoList = Arrays.asList(objectMapper.readValue(content, TodoList[].class));
 
-		Assert.assertTrue(re_til.getTitle().equals("Title1"));
+		Assert.assertTrue(todoList.get(0).getTitle().equals("Title1"));
 	}
 
 }
