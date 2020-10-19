@@ -19,7 +19,7 @@ public class TodoListController {
 	private final TodoListService todoListService;
 	
 	@GetMapping("/api/selectTil")
-	public ResponseEntity<List<TodoList>> selectTil(String id) {
+	public ResponseEntity<List<TodoList>> selectTil(@RequestBody String id) {
 		List<TodoList>todoList = todoListService.selectTil(id);
 		return ResponseEntity.ok(todoList);
 	}
