@@ -14,6 +14,8 @@ public class TodoList {
 	
 	private String id;
 	
+	private Integer tilno; // TodoList 번호
+	
 	private String title;
 	
 	private String contents;
