@@ -45,10 +45,24 @@ public class TodoListController {
 		}
 	}
 	
+	/* Update 사양 변경
+	      업데이트 버튼 클릭시 
+	      현재 리스트들을 내용을 반영  */
 	@PostMapping("/api/updateTil")
-	public ResponseEntity<String> updateTil(TodoList til) {
+	public ResponseEntity<String> updateTil(@RequestBody List<TodoList> til) {
 		try {
 			todoListService.updateTil(til);
+			return ResponseEntity.ok("Success");
+		} catch(Exception e) {
+			log.error("ErrorMessage" + e);
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@PostMapping("/api/deleteTil")
+	public ResponseEntity<String> deleteTil(@RequestBody TodoList til) {
+		try {
+			todoListService.deleteTil(til);
 			return ResponseEntity.ok("Success");
 		} catch(Exception e) {
 			log.error("ErrorMessage" + e);

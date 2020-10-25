@@ -9,5 +9,7 @@ public interface TodoListService {
 	
 	void insertTil(TodoList til);
 	
-	void updateTil(TodoList til);
+	void updateTil(List<TodoList> til);
+	
+	void deleteTil(TodoList til);
 }

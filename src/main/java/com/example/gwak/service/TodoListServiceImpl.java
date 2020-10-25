@@ -18,12 +18,21 @@ public class TodoListServiceImpl implements TodoListService{
 		List<TodoList>todoList = todoListMapper.selectTil(id);
 		return todoList;
 	}
+	
 	@Override
 	public void insertTil(TodoList til) {
 		todoListMapper.insertTil(til);
 	}
+	
 	@Override
-	public void updateTil(TodoList til) {
-		todoListMapper.updateTil(til);
+	public void updateTil(List<TodoList> til) {
+		for(TodoList todoList:til) {
+			todoListMapper.updateTil(todoList);
+		}
+	}
+	
+	@Override
+	public void deleteTil(TodoList til) {
+		todoListMapper.deleteTil(til);
 	}
 }

@@ -44,7 +44,7 @@ public class TodoListControllerTest {
 	@Test
 	public void createTodoList() throws Exception {
 		TodoList todoList = TodoList.builder()
-				.id("Gwakheewon5")
+				.id("Gwakheewon6")
 				.title("Title1")
 				.contents("Content5")
 				.createdat("20201022")
@@ -58,7 +58,7 @@ public class TodoListControllerTest {
 
 	@Test
 	public void updateTodoList() {
-
+		
 	}
 
 	@Test

@@ -10,7 +10,9 @@ import com.example.gwak.dto.TodoList;
 public interface TodoListMapper {
 	List<TodoList>selectTil(String id); // Get TodoList For ID
 	
-	void insertTil(TodoList til); // Insert TodoList For ID
+	void insertTil(TodoList til); // Insert TodoList For ID, TITLE, CONTENTS
 	
-	void updateTil(TodoList til); // Update TodoList For ID, Title
+	void updateTil(TodoList til); // Update TodoList For ID, TILNO
+	
+	void deleteTil(TodoList til); // Delete TodoList For ID, TILNO
 }
