@@ -44,7 +44,7 @@ public class TodoListControllerTest {
 	@Test
 	public void createTodoList() throws Exception {
 		TodoList todoList = TodoList.builder()
-				.id("Gwakheewon6")
+				.id("Gwakheewon12")
 				.title("Title1")
 				.contents("Content5")
 				.createdat("20201022")
@@ -58,13 +58,14 @@ public class TodoListControllerTest {
 
 	@Test
 	public void updateTodoList() {
-		
+
 	}
 
 	@Test
 	public void selectTodoList() throws Exception {
-		String id = "Gwakheewon5";
-		
+		//given
+		String id = "Gwakheewon12";
+
 		MvcResult result =  
 				mockMvc.perform(get("/api/selectTil")
 						.content(id))
@@ -76,6 +77,22 @@ public class TodoListControllerTest {
 		List<TodoList> todoList = Arrays.asList(objectMapper.readValue(content, TodoList[].class));
 
 		Assert.assertTrue(todoList.get(0).getTitle().equals("Title1"));
+	}
+
+	@Test
+	public void deleteTodoList() throws Exception {
+		//given
+		TodoList todoList = TodoList.builder()
+				.id("Gwakheewon12")
+				.tilno(1)
+				.build();
+		
+		mockMvc.perform(post("/api/deleteTil")
+						.contentType(MediaType.APPLICATION_JSON_UTF8)
+						.content(objectMapper.writeValueAsString(todoList)))
+				.andDo(print())
+				.andExpect(status().is(200));
+
 	}
 
 }
