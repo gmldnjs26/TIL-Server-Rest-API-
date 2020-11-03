@@ -12,7 +12,11 @@ import com.example.gwak.dto.AuthDto;
 import com.example.gwak.dto.Member;
 import com.example.gwak.mapper.MemberMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 @Service
+@Slf4j
 public class MemberServiceImpl implements MemberService, UserDetailsService {
 	@Autowired
 	private MemberMapper memberMapper;
@@ -41,7 +45,8 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 
 		} 
 		else if (!passwordEncoder.matches(memberVO.getPassword(), member.getPassword())) {
-			throw new IllegalArgumentException("Password is Wrong");
+			log.error("errorMessage : " + memberVO.getPassword() + " not Equals " +   member.getPassword());
+			return null;
 		} 
 		else {
 			String token = jwtTokenProvider.createToken(member.getUsername(), member.getAuthorities());

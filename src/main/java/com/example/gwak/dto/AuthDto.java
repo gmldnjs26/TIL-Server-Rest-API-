@@ -16,4 +16,5 @@ public class AuthDto {
 	private Member member;
 	
 	private String token;
+	
 }

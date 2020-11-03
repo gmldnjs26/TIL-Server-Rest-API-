@@ -1,5 +1,7 @@
 package com.example.gwak.controller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +19,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@PostMapping("/api/join")
-	public ResponseEntity join(@RequestBody Member member) {
+	public ResponseEntity<Object> join(@RequestBody Member member) {
 		try {
 			memberService.join(member);
 			return ResponseEntity.ok(member);
@@ -29,8 +31,13 @@ public class MemberController {
 	}
 	
 	@PostMapping("/api/login")
-	public ResponseEntity<AuthDto> login(@RequestBody Member member) throws Exception {
-		return ResponseEntity.ok(memberService.login(member));
+	public ResponseEntity<Object> login(@RequestBody Member member) throws Exception {
+		if(!Objects.isNull(memberService.login(member))) {
+			return ResponseEntity.ok(memberService.login(member));
+		} 
+		else {
+			return ResponseEntity.badRequest().body("Password is Wrong");
+		}
 	}
 	
 }
