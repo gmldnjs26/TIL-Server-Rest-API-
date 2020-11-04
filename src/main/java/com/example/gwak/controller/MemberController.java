@@ -31,13 +31,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("/api/login")
-	public ResponseEntity<Object> login(@RequestBody Member member) throws Exception {
-		if(!Objects.isNull(memberService.login(member))) {
-			return ResponseEntity.ok(memberService.login(member));
-		} 
-		else {
-			return ResponseEntity.badRequest().body("Password is Wrong");
-		}
+	public ResponseEntity<Object> login(@RequestBody Member member) throws Exception {	
+		return ResponseEntity.ok(memberService.login(member));
 	}
 	
 }

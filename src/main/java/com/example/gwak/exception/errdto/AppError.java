@@ -1,4 +1,4 @@
-package com.example.gwak.exception;
+package com.example.gwak.exception.errdto;
 
 import lombok.Data;
 
