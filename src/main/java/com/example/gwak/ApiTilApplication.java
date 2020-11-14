@@ -10,11 +10,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootApplication
+@Slf4j
 public class ApiTilApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiTilApplication.class, args);
+		log.debug("==========================" );
+		
+		log.debug("==========================" );
 	}
 	
 	@Bean

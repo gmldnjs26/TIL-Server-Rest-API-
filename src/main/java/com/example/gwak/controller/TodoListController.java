@@ -26,6 +26,7 @@ public class TodoListController {
 	@GetMapping("/api/selectTil")
 	public ResponseEntity<List<TodoList>> selectTil(@RequestBody String id) {
 		try {
+			System.out.println(id);
 			List<TodoList>todoList = todoListService.selectTil(id);
 			return ResponseEntity.ok(todoList);
 		} catch (Exception e) {
