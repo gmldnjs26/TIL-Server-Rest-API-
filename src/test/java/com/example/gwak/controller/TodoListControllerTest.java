@@ -44,9 +44,9 @@ public class TodoListControllerTest {
 	@Test
 	public void createTodoList() throws Exception {
 		TodoList todoList = TodoList.builder()
-				.id("Gwakheewon12")
-				.title("Title1")
-				.contents("Content5")
+				.id("123@123.com")
+				.title("Title3")
+				.contents("Content3")
 				.createdat("20201022")
 				.build();
 		mockMvc.perform(post("/api/insertTil")

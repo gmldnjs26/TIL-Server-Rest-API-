@@ -2,6 +2,7 @@ package com.example.gwak.controller;
 
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +24,12 @@ public class TodoListController {
 	
 	//private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@GetMapping("/api/selectTil")
-	public ResponseEntity<List<TodoList>> selectTil(@RequestBody String id) {
+	@GetMapping(value = "/api/selectTil", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<TodoList>> selectTil(String id) {
 		try {
-			System.out.println(id);
+			log.debug("!!!!!!!===@@@@@@@@@@===================@@@@@@@@@@===!!!!!!!");
+			log.debug(id);
+			log.debug("!!!!!!!===@@@@@@@@@@===================@@@@@@@@@@===!!!!!!!");
 			List<TodoList>todoList = todoListService.selectTil(id);
 			return ResponseEntity.ok(todoList);
 		} catch (Exception e) {

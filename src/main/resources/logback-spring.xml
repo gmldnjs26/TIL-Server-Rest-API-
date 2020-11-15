@@ -2,4 +2,14 @@
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
 	<logger name="com.example.gwak" level="DEBUG"/>
+	
+	<logger name="jdbc" level="OFF"/>
+	<logger name="jdbc.sqlonly" level="OFF"/>
+	<logger name="jdbc.sqltiming" level="DEBUG"/>
+	<logger name="jdbc.audit" level="OFF"/>
+	<logger name="jdbc.resultset" level="OFF"/>
+	<logger name="jdbc.resultsettable" level="DEBUG"/>
+	<logger name="jdbc.connection" level="OFF"/>
+	
+	
 </configuration>
