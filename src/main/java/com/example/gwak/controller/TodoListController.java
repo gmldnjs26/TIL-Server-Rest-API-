@@ -22,14 +22,9 @@ public class TodoListController {
 	
 	private final TodoListService todoListService;
 	
-	//private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
 	@GetMapping(value = "/api/selectTil", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<TodoList>> selectTil(String id) {
 		try {
-			log.debug("!!!!!!!===@@@@@@@@@@===================@@@@@@@@@@===!!!!!!!");
-			log.debug(id);
-			log.debug("!!!!!!!===@@@@@@@@@@===================@@@@@@@@@@===!!!!!!!");
 			List<TodoList>todoList = todoListService.selectTil(id);
 			return ResponseEntity.ok(todoList);
 		} catch (Exception e) {
@@ -38,7 +33,7 @@ public class TodoListController {
 		}
 	}
 	
-	@PostMapping("/api/insertTil")
+	@PostMapping(value = "/api/insertTil", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> insertTil(@RequestBody TodoList todoList) {
 		try {
 			todoListService.insertTil(todoList);
@@ -53,7 +48,7 @@ public class TodoListController {
 	/* Update 사양 변경
 	      업데이트 버튼 클릭시 
 	      현재 리스트들을 내용을 반영  */
-	@PostMapping("/api/updateTil")
+	@PostMapping(value = "/api/updateTil", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> updateTil(@RequestBody List<TodoList> til) {
 		try {
 			todoListService.updateTil(til);
@@ -64,7 +59,7 @@ public class TodoListController {
 		}
 	}
 	
-	@PostMapping("/api/deleteTil")
+	@PostMapping(value = "/api/deleteTil", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> deleteTil(@RequestBody TodoList til) {
 		try {
 			todoListService.deleteTil(til);
