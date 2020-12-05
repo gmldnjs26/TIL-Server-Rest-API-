@@ -19,11 +19,9 @@
     		TODOLIST
     	SET 
     		CONTENTS = #{contents}
-    		,COMPLETED = #{completed}
+    		,TITLE = #{title}
     	WHERE 
-    		ID = #{id}
-    		AND TILNO = #{tilno}
-    		AND TITLE = #{title}
+    		TILNO = #{tilno}
     </update>
     
     <delete id="deleteTil" parameterType="com.example.gwak.dto.TodoList">

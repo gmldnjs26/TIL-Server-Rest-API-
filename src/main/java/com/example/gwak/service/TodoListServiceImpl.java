@@ -25,10 +25,8 @@ public class TodoListServiceImpl implements TodoListService{
 	}
 	
 	@Override
-	public void updateTil(List<TodoList> til) {
-		for(TodoList todoList:til) {
-			todoListMapper.updateTil(todoList);
-		}
+	public void updateTil(TodoList til) {
+		todoListMapper.updateTil(til);
 	}
 	
 	@Override

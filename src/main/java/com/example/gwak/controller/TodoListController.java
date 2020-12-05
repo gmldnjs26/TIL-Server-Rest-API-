@@ -49,7 +49,7 @@ public class TodoListController {
 	      업데이트 버튼 클릭시 
 	      현재 리스트들을 내용을 반영  */
 	@PostMapping(value = "/api/updateTil", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<String> updateTil(@RequestBody List<TodoList> til) {
+	public ResponseEntity<String> updateTil(@RequestBody TodoList til) {
 		try {
 			todoListService.updateTil(til);
 			return ResponseEntity.ok("Success");
