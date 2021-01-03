@@ -1,7 +1,12 @@
 package com.example.gwak.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class TodoListController {
+	
+	private static final String RESULT = "result";
+	private static final String PRINT_RESULT = "print_result";
+	private static final String FILE_PATH = "filePath";
+	private static final String FILE_NAME = "fileName";
 	
 	private final TodoListService todoListService;
 	
@@ -68,5 +78,20 @@ public class TodoListController {
 			log.error("ErrorMessage" + e);
 			return ResponseEntity.badRequest().build();
 		}
+	}
+	
+	@PostMapping(value = "/api/PDFTil", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<InputStreamResource> print(@RequestBody String id) {
+		HashMap<String,String> fileInfo = new HashMap<String,String>();
+		
+		InputStreamResource resource = new InputStreamResource(new FileInputStream(new File()));
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("", "");
+		headers.add("", "");
+		return ResponseEntity.ok()
+				.headers(headers)
+				.contentType(MediaType.APPLICATION_PDF)
+				.body(resource);
 	}
 }
