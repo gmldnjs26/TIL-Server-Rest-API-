@@ -1,8 +1,4 @@
 # TIL-Server-Rest-API-
-Spring 
-Mybatis
-SpringSecurity 
-SpringBoot 
 
 ## 기술 스택
 - Spring 
